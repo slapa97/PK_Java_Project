@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">PK_Java_Project</string>
+    <string-array name="category_array">
+        <item>Automative</item>
+        <item>Body</item>
+        <item>Clothes</item>
+        <item>Culture</item>
+        <item>Electronics</item>
+        <item>Food</item>
+        <item>Home</item>
+        <item>Sport</item>
+    </string-array>
 </resources>
