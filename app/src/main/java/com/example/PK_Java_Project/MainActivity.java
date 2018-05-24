@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(), "Test", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), OneProduct.class);
                 startActivity(intent);
-
             }
 
         });
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             list.add("Data: " + String.valueOf(getIntent().getIntExtra("date", 0)));
             list.add(String.valueOf("Kraj: " + getIntent().getStringExtra("country")));
             list.add(String.valueOf("Ilosc: " + getIntent().getIntExtra("quantity", 0)));
+            list.add(String.valueOf(getIntent().getStringExtra("category")));
 
             String joined = TextUtils.join(" ", list);
             productsSet.add(joined);
