@@ -16,8 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.PK_Java_Project.OneProduct">
+        <activity android:name="com.example.PK_Java_Project.OneProduct">
         </activity>
     </application>
 
