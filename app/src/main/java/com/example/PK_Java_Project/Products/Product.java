@@ -8,4 +8,6 @@ public interface Product {
     double getQuantity();
 
     Period remainingTime();
+
+    long saveData();
 }
