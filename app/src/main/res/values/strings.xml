@@ -2,11 +2,8 @@
     <string name="app_name">Inwentarz</string>
     <string-array name="category_array">
         <item>Automotive</item>
-        <item>Body</item>
         <item>Clothes</item>
-        <item>Culture</item>
         <item>Electronics</item>
-        <item>Food</item>
         <item>Home</item>
         <item>Sport</item>
     </string-array>
