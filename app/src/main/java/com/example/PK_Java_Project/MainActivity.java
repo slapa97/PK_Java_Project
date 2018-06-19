@@ -22,11 +22,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private LinkedList<Product> productList = new LinkedList<>();
+    private ListView lista;
     public static final int REQUEST_CODE = 1;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("onActivityResult", "used");
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 if (data.getStringExtra("name") != null) {
@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
                             String.valueOf(data.getStringExtra("name")),
                             String.valueOf(data.getStringExtra("category"))));
                     productList.add(product);
-                    Log.e("onActivityResult", productList.getFirst().getName());
-
+                    actualise(lista);
                 }
             }
         }
@@ -45,16 +44,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
-        final ListView lista = (ListView) findViewById(R.id.lista);
+        lista = (ListView) findViewById(R.id.lista);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), OneProduct.class);
                 startActivityForResult(intent, REQUEST_CODE);
-                actualise(lista);
             }
 
         });
+
         //List<String> list = new ArrayList<>();
         //list.add(String.valueOf(getIntent().getStringExtra("name")));
 //            list.add("Cena:  " + String.valueOf(getIntent().getIntExtra("price", 0)));
