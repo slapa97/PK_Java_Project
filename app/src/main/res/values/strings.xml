@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">PK_Java_Project</string>
+    <string name="app_name">Inwentarz</string>
+    <string-array name="category_array">
+        <item>Automotive</item>
+        <item>Clothes</item>
+        <item>Electronics</item>
+        <item>Home</item>
+        <item>Sport</item>
+    </string-array>
 </resources>
