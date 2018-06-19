@@ -66,25 +66,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void actualise(ListView lista) {
-        Log.e("onActivityResult", "cos sie tu dzieje ?");
-        Log.e("onActivityResult", Integer.toString(productList.size()));
         if(!productList.isEmpty()) {
-            Log.e("onActivityResult", "a tu ?");
             SharedPreferences.Editor ProductsDetails = getApplicationContext().getSharedPreferences("ProductsDetails", Context.MODE_PRIVATE).edit();
             try {
-                Log.e("p list", Integer.toString(productList.size()));
                 List<String> prodNames = new LinkedList<>();
                 for (Product s : productList) {
                     prodNames.add(s.getName());
-                    Log.e("name ", s.getName());
                 }
                 lista.setAdapter(new ArrayAdapter<>(this, R.layout.list_row, prodNames.toArray()));
                 String joined = TextUtils.join(" ", prodNames);
-                Log.e("joined ", joined);
                 ProductsDetails.putString("key", joined);
                 ProductsDetails.apply();
             }catch(Exception e){
-                Log.e("login activity", "Can not read name: " + e.toString());
+                Log.e("login activity", "error: " + e.toString());
             }
         }
     }
