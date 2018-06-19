@@ -3,8 +3,8 @@ package com.example.PK_Java_Project;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,59 +12,75 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.PK_Java_Project.ProductFactory.ProductFactory;
+import com.example.PK_Java_Project.ProductFactory.SportFactory;
 import com.example.PK_Java_Project.Products.Product;
-import com.example.PK_Java_Project.Products.ProductProperties;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private LinkedList<Product> productList = new LinkedList<>();
+    public static final int REQUEST_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.e("onActivityResult", "used");
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                if (data.getStringExtra("name") != null) {
+                    Product product = ProductFactory.createProduct(new SportFactory(
+                            String.valueOf(data.getStringExtra("name")),
+                            String.valueOf(data.getStringExtra("category"))));
+                    productList.add(product);
+                    Log.e("onActivityResult", productList.getFirst().getName());
+
+                }
+            }
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
-        try {
-            if (getIntent().getLongExtra("offset", 0) >= 0) {
-                Product product = ProductProperties.loadData(getIntent().getLongExtra("offset", 0));
-                productList.addLast(product);
-            }
-        } catch (Exception e){
-
-        }
+        final ListView lista = (ListView) findViewById(R.id.lista);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(getApplicationContext(), "Test", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), OneProduct.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE);
+                actualise(lista);
             }
 
         });
-        ListView lista = (ListView) findViewById(R.id.lista);
-        List<String> list = new ArrayList<>();
-        if (getIntent().getStringExtra("name") != null) {
-            list.add(String.valueOf(getIntent().getStringExtra("name")));
+        //List<String> list = new ArrayList<>();
+        //list.add(String.valueOf(getIntent().getStringExtra("name")));
 //            list.add("Cena:  " + String.valueOf(getIntent().getIntExtra("price", 0)));
 //            list.add("Data: " + String.valueOf(getIntent().getIntExtra("date", 0)));
 //            list.add(String.valueOf("Kraj: " + getIntent().getStringExtra("country")));
 //            list.add(String.valueOf("Ilosc: " + getIntent().getIntExtra("quantity", 0)));
 //            list.add(String.valueOf(getIntent().getStringExtra("category")));
+    }
 
-            String joined = TextUtils.join(" ", list);
-            //productsSet.add(joined);
-        }
-        //lista.setAdapter(new ArrayAdapter<>(this, R.layout.list_row, productsSet.toArray()));
+
+    private void actualise(ListView lista) {
+        Log.e("onActivityResult", "cos sie tu dzieje ?");
+        Log.e("onActivityResult", Integer.toString(productList.size()));
         if(!productList.isEmpty()) {
+            Log.e("onActivityResult", "a tu ?");
             SharedPreferences.Editor ProductsDetails = getApplicationContext().getSharedPreferences("ProductsDetails", Context.MODE_PRIVATE).edit();
             try {
-                String name = productList.getLast().getName();
-                ProductsDetails.putString("key", name);
+                Log.e("p list", Integer.toString(productList.size()));
+                List<String> prodNames = new LinkedList<>();
+                for (Product s : productList) {
+                    prodNames.add(s.getName());
+                    Log.e("name ", s.getName());
+                }
+                lista.setAdapter(new ArrayAdapter<>(this, R.layout.list_row, prodNames.toArray()));
+                String joined = TextUtils.join(" ", prodNames);
+                Log.e("joined ", joined);
+                ProductsDetails.putString("key", joined);
                 ProductsDetails.apply();
             }catch(Exception e){
                 Log.e("login activity", "Can not read name: " + e.toString());

@@ -9,11 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.PK_Java_Project.Products.Sport;
 
 
 public class OneProduct extends AppCompatActivity {
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
 
     @Override
@@ -39,19 +37,46 @@ public class OneProduct extends AppCompatActivity {
         button_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = name_edit.getText().toString();
-                //int price = (Integer.parseInt(price_edit.getText().toString()));
-                //int date = (Integer.parseInt(date_edit.getText().toString()));
-                //String country = country_edit.getText().toString();
-                //int quantity = (Integer.parseInt(quantity_edit.getText().toString()));
-                String category = spinner.getSelectedItem().toString();;
+                String name, country, category;
+                int price, date, quantity;
+                try {
+                    name = name_edit.getText().toString();
+                } catch (Exception e) {
+                    name = "";
+                }
+                try {
+                    price = (Integer.parseInt(price_edit.getText().toString()));
+                } catch (Exception e) {
+                    price = -1;
+                }
+                try {
+                    date = (Integer.parseInt(date_edit.getText().toString()));
+                } catch (Exception e) {
+                    date = -1;
+                }
+                try {
+                    country = country_edit.getText().toString();
+                } catch (Exception e) {
+                    country = "";
+                }
+                try {
+                    quantity = (Integer.parseInt(quantity_edit.getText().toString()));
+                } catch (Exception e) {
+                    quantity = -1;
+                }
+
+                category = spinner.getSelectedItem().toString();
+                ;
+
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Sport product = new Sport(name, category);
-                long offset  = product.saveData();
-                intent.putExtra("offset", offset);
-
-                startActivity(intent);
+                intent.putExtra("name", name);
+                intent.putExtra("date", date);
+                intent.putExtra("country", country);
+                intent.putExtra("quantity", quantity);
+                intent.putExtra("category", category);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
 
