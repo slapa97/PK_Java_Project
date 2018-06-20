@@ -11,6 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.PK_Java_Project.ProductFactory.AutomotiveFactory;
+import com.example.PK_Java_Project.ProductFactory.ClothesFactory;
+import com.example.PK_Java_Project.ProductFactory.ElectronicFactory;
 import com.example.PK_Java_Project.ProductFactory.ProductFactory;
 import com.example.PK_Java_Project.ProductFactory.SportFactory;
 import com.example.PK_Java_Project.Products.Product;
@@ -27,16 +30,65 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                if (data.getStringExtra("name") != null) {
-//                    Product product = ProductFactory.createProduct(new SportFactory(
-//                            String.valueOf(data.getStringExtra("name")),
-//                            String.valueOf(data.getStringExtra("category"))));
-//                    products.add(product);
-//                    actualise(lista);
+                String category = data.getStringExtra("category");
+                Product product = null;
+                if (category.equals("Automotive")) {
+                    product = ProductFactory.createProduct(new AutomotiveFactory(
+                            String.valueOf(data.getStringExtra("name")),
+                            String.valueOf(data.getStringExtra("description")),
+                            String.valueOf(data.getStringExtra("producent")),
+                            String.valueOf(data.getStringExtra("model")),
+                            Integer.valueOf(data.getStringExtra("produceYear")),
+                            String.valueOf(data.getStringExtra("color")),
+                            String.valueOf(data.getStringExtra("country")),
+                            Double.valueOf(data.getStringExtra("price")),
+                            category,
+                            Double.valueOf(data.getStringExtra("quantity"))
+                    ));
+
+                } else if (category.equals("Clothes")) {
+                    product = ProductFactory.createProduct(new ClothesFactory(
+                            String.valueOf(data.getStringExtra("name")),
+                            String.valueOf(data.getStringExtra("description")),
+                            String.valueOf(data.getStringExtra("size")),
+                            String.valueOf(data.getStringExtra("color")),
+                            String.valueOf(data.getStringExtra("country")),
+                            Double.valueOf(data.getStringExtra("price")),
+                            category,
+                            Double.valueOf(data.getStringExtra("quantity"))
+                    ));
+
+                } else if (category.equals("Electronics")) {
+                    product = ProductFactory.createProduct(new ElectronicFactory(
+                            String.valueOf(data.getStringExtra("name")),
+                            String.valueOf(data.getStringExtra("description")),
+                            String.valueOf(data.getStringExtra("size")),
+                            String.valueOf(data.getStringExtra("color")),
+                            String.valueOf(data.getStringExtra("country")),
+                            Double.valueOf(data.getStringExtra("price")),
+                            category,
+                            Double.valueOf(data.getStringExtra("quantity"))
+                    ));
+                } else if (category.equals("Sport")) {
+                    product = ProductFactory.createProduct(new SportFactory(
+                            String.valueOf(data.getStringExtra("name")),
+                            String.valueOf(data.getStringExtra("description")),
+                            String.valueOf(data.getStringExtra("color")),
+                            String.valueOf(data.getStringExtra("country")),
+                            Double.valueOf(data.getStringExtra("price")),
+                            category,
+                            Double.valueOf(data.getStringExtra("quantity"))
+                    ));
+                }
+
+                if (product != null) {
+                    products.add(product);
+                    actualise(lista);
                 }
             }
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
