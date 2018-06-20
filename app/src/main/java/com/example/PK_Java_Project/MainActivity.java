@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
                             String.valueOf(data.getStringExtra("description")),
                             String.valueOf(data.getStringExtra("producent")),
                             String.valueOf(data.getStringExtra("model")),
-                            Integer.valueOf(data.getStringExtra("produceYear")),
+                            data.getIntExtra("produceYear", 0),
                             String.valueOf(data.getStringExtra("color")),
                             String.valueOf(data.getStringExtra("country")),
-                            Double.valueOf(data.getStringExtra("price")),
+                            data.getDoubleExtra("price", 0),
                             category,
-                            Double.valueOf(data.getStringExtra("quantity"))
+                            data.getDoubleExtra("quantity", 0)
                     ));
 
                 } else if (category.equals("Clothes")) {
@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
                             String.valueOf(data.getStringExtra("size")),
                             String.valueOf(data.getStringExtra("color")),
                             String.valueOf(data.getStringExtra("country")),
-                            Double.valueOf(data.getStringExtra("price")),
+                            data.getDoubleExtra("price", 0),
                             category,
-                            Double.valueOf(data.getStringExtra("quantity"))
+                            data.getDoubleExtra("quantity", 0)
                     ));
 
                 } else if (category.equals("Electronics")) {
@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
                             String.valueOf(data.getStringExtra("size")),
                             String.valueOf(data.getStringExtra("color")),
                             String.valueOf(data.getStringExtra("country")),
-                            Double.valueOf(data.getStringExtra("price")),
+                            data.getDoubleExtra("price", 0),
                             category,
-                            Double.valueOf(data.getStringExtra("quantity"))
+                            data.getDoubleExtra("quantity", 0)
                     ));
                 } else if (category.equals("Sport")) {
                     product = ProductFactory.createProduct(new SportFactory(
@@ -76,15 +76,16 @@ public class MainActivity extends AppCompatActivity {
                             String.valueOf(data.getStringExtra("description")),
                             String.valueOf(data.getStringExtra("color")),
                             String.valueOf(data.getStringExtra("country")),
-                            Double.valueOf(data.getStringExtra("price")),
+                            data.getDoubleExtra("price", 0),
                             category,
-                            Double.valueOf(data.getStringExtra("quantity"))
+                            data.getDoubleExtra("quantity", 0)
                     ));
                 }
 
                 if (product != null) {
                     products.add(product);
                     actualise(lista);
+
                 }
             }
         }
@@ -104,14 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-//        List<String> list = new ArrayList<>();
-//        list.add(String.valueOf(getIntent().getStringExtra("name")));
-//        list.add("Cena:  " + String.valueOf(getIntent().getIntExtra("price", 0)));
-//        list.add("Data: " + String.valueOf(getIntent().getIntExtra("date", 0)));
-//        list.add(String.valueOf("Kraj: " + getIntent().getStringExtra("country")));
-//        list.add(String.valueOf("Ilosc: " + getIntent().getIntExtra("quantity", 0)));
-//        list.add(String.valueOf(getIntent().getStringExtra("category")));
     }
 
 

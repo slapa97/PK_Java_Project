@@ -3,6 +3,7 @@ package com.example.PK_Java_Project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -61,8 +62,9 @@ public class OneProduct extends AppCompatActivity {
         button_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name, country, category;
-                int price, date, quantity;
+                String name, country, producent, description, model, size, color, category;
+                int productionYear;
+                double  price, quantity;
                 try {
                     name = name_edit.getText().toString();
                 } catch (Exception e) {
@@ -74,9 +76,9 @@ public class OneProduct extends AppCompatActivity {
                     price = -1;
                 }
                 try {
-                    date = (Integer.parseInt(production_year_edit.getText().toString()));
+                    productionYear = (Integer.parseInt(production_year_edit.getText().toString()));
                 } catch (Exception e) {
-                    date = -1;
+                    productionYear = -1;
                 }
                 try {
                     country = country_edit.getText().toString();
@@ -84,18 +86,56 @@ public class OneProduct extends AppCompatActivity {
                     country = "";
                 }
                 try {
-                    quantity = (Integer.parseInt(quantity_edit.getText().toString()));
+                    quantity = (Double.parseDouble(quantity_edit.getText().toString()));
                 } catch (Exception e) {
                     quantity = -1;
+                }
+
+                try{
+                    producent = producent_edit.getText().toString();
+                } catch( Exception e) {
+                    producent = "";
+                }
+
+                try{
+                    description = description_edit.getText().toString();
+                } catch( Exception e) {
+                    description = "";
+                }
+
+                try{
+                    color = colour_edit.getText().toString();
+                } catch( Exception e) {
+                    color = "";
+                }
+
+                try{
+                    model = model_edit.getText().toString();
+                } catch( Exception e) {
+                    model="";
+                }
+
+                try{
+                    size = size_edit.getText().toString();
+                } catch( Exception e) {
+                    size = "";
                 }
 
                 category = spinner.getSelectedItem().toString();
 
 
+//                model, size, color, category;
+//                price, productionYear, quantity;
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("name", name);
-                intent.putExtra("date", date);
+                intent.putExtra("description", description);
+                intent.putExtra("model", model);
+                intent.putExtra("size", size);
+                intent.putExtra("price", price);
+                intent.putExtra("color", color);
+                intent.putExtra("produceYear", productionYear);
+                intent.putExtra("producent", producent);
                 intent.putExtra("country", country);
                 intent.putExtra("quantity", quantity);
                 intent.putExtra("category", category);
