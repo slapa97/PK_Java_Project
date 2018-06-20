@@ -21,9 +21,18 @@ public class OneProduct extends AppCompatActivity {
 
         final EditText name_edit = (EditText) findViewById(R.id.edittext1);
         final EditText price_edit = (EditText) findViewById(R.id.edittext2);
-        final EditText date_edit = (EditText) findViewById(R.id.edittext3);
+        final EditText production_year_edit = (EditText) findViewById(R.id.edittext3);
         final EditText country_edit = (EditText) findViewById(R.id.edittext4);
         final EditText quantity_edit = (EditText) findViewById(R.id.edittext5);
+        final EditText producent_edit = (EditText) findViewById(R.id.edittext6);
+        final EditText description_edit = (EditText) findViewById(R.id.edittext7);
+        final EditText colour_edit = (EditText) findViewById(R.id.edittext8);
+        final EditText model_edit = (EditText) findViewById(R.id.edittext9);
+        final EditText size_edit = (EditText) findViewById(R.id.edittext10);
+
+
+
+
         final Button button_one = (Button) findViewById(R.id.button_one);
         final Spinner spinner = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -65,7 +74,7 @@ public class OneProduct extends AppCompatActivity {
                     price = -1;
                 }
                 try {
-                    date = (Integer.parseInt(date_edit.getText().toString()));
+                    date = (Integer.parseInt(production_year_edit.getText().toString()));
                 } catch (Exception e) {
                     date = -1;
                 }
