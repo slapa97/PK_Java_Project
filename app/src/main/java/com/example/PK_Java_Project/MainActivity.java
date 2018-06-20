@@ -1,6 +1,4 @@
 package com.example.PK_Java_Project;
-//importujemy
-//test
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private LinkedList<Product> productList = new LinkedList<>();
+    private Container<Product> products = new Container<>();
     private ListView lista;
     public static final int REQUEST_CODE = 1;
 
@@ -30,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 if (data.getStringExtra("name") != null) {
-                    Product product = ProductFactory.createProduct(new SportFactory(
-                            String.valueOf(data.getStringExtra("name")),
-                            String.valueOf(data.getStringExtra("category"))));
-                    productList.add(product);
-                    actualise(lista);
+//                    Product product = ProductFactory.createProduct(new SportFactory(
+//                            String.valueOf(data.getStringExtra("name")),
+//                            String.valueOf(data.getStringExtra("category"))));
+//                    products.add(product);
+//                    actualise(lista);
                 }
             }
         }
@@ -54,22 +52,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        //List<String> list = new ArrayList<>();
-        //list.add(String.valueOf(getIntent().getStringExtra("name")));
-//            list.add("Cena:  " + String.valueOf(getIntent().getIntExtra("price", 0)));
-//            list.add("Data: " + String.valueOf(getIntent().getIntExtra("date", 0)));
-//            list.add(String.valueOf("Kraj: " + getIntent().getStringExtra("country")));
-//            list.add(String.valueOf("Ilosc: " + getIntent().getIntExtra("quantity", 0)));
-//            list.add(String.valueOf(getIntent().getStringExtra("category")));
+//        List<String> list = new ArrayList<>();
+//        list.add(String.valueOf(getIntent().getStringExtra("name")));
+//        list.add("Cena:  " + String.valueOf(getIntent().getIntExtra("price", 0)));
+//        list.add("Data: " + String.valueOf(getIntent().getIntExtra("date", 0)));
+//        list.add(String.valueOf("Kraj: " + getIntent().getStringExtra("country")));
+//        list.add(String.valueOf("Ilosc: " + getIntent().getIntExtra("quantity", 0)));
+//        list.add(String.valueOf(getIntent().getStringExtra("category")));
     }
 
 
     private void actualise(ListView lista) {
-        if(!productList.isEmpty()) {
+        if(!products.isEmpty()) {
             SharedPreferences.Editor ProductsDetails = getApplicationContext().getSharedPreferences("ProductsDetails", Context.MODE_PRIVATE).edit();
             try {
                 List<String> prodNames = new LinkedList<>();
-                for (Product s : productList) {
+                for (Product s : products) {
                     prodNames.add(s.getName());
                 }
                 lista.setAdapter(new ArrayAdapter<>(this, R.layout.list_row, prodNames.toArray()));

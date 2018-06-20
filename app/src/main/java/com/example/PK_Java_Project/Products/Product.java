@@ -1,13 +1,12 @@
 package com.example.PK_Java_Project.Products;
 
-import java.time.Period;
 
 public interface Product {
     String getName();
-
+    String getDescription();
     double getQuantity();
-
-    Period remainingTime();
-
-    long saveData();
+    String getCategory();
+    double getPrice();
+    String getCountry();
+    String getColor();
 }
