@@ -1,19 +1,21 @@
 package com.example.PK_Java_Project.ProductFactory;
 
+import com.example.PK_Java_Project.Products.Clothes;
 import com.example.PK_Java_Project.Products.Product;
-import com.example.PK_Java_Project.Products.Sport;
 
-public class SportFactory implements ProductAbstractFactory {
+public class ClothesFactory implements ProductAbstractFactory {
     private String name;
-    private String category;
     private String description;
+    private String size;
     private String color;
     private String country;
     private double price;
+    private String category;
     private double quantity;
 
-    public SportFactory(String name, String description, String color,
-                        String country, double price, String category, double quantity){
+    public ClothesFactory(String name, String description, String size, String color,
+                          String country, double price, String category, double quantity){
+        this.size = size;
         this.name = name;
         this.description = description;
         this.color = color;
@@ -25,7 +27,7 @@ public class SportFactory implements ProductAbstractFactory {
 
     @Override
     public Product createProduct() {
-        return new Sport(name, description, color,
-                country, price, category, quantity);
+        return new Clothes(name, description, size, color, country, price,
+        category, quantity);
     }
 }

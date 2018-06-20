@@ -81,7 +81,7 @@ public class OneProduct extends AppCompatActivity {
                 }
 
                 category = spinner.getSelectedItem().toString();
-                ;
+
 
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
