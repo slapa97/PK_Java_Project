@@ -31,7 +31,7 @@
             android:layout_marginTop="27dp"
             android:hint="nazwa"
             android:inputType="text"
-            android:visibility="visible" />
+            />
 
         <EditText
             android:id="@+id/edittext2"
@@ -43,21 +43,20 @@
             android:layout_marginEnd="24dp"
             android:hint="cena"
             android:inputType="number"
-            android:visibility="visible"
             tools:layout_editor_absoluteX="263dp"
-            tools:layout_editor_absoluteY="93dp" />
+            tools:layout_editor_absoluteY="93dp"
+            />
 
 
         <EditText
             android:id="@+id/edittext3"
-            android:layout_width="71dp"
+            android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_alignBaseline="@+id/edittext8"
             android:layout_alignBottom="@+id/edittext8"
-            android:layout_alignEnd="@+id/edittext6"
+            android:layout_toEndOf="@+id/textView"
             android:hint="rok produkcji"
             android:inputType="number"
-            android:visibility="visible"
             tools:layout_editor_absoluteX="263dp"
             tools:layout_editor_absoluteY="126dp" />
 
@@ -70,7 +69,6 @@
             android:layout_below="@+id/edittext2"
             android:hint="kraj"
             android:inputType="text"
-            android:visibility="visible"
             tools:layout_editor_absoluteX="263dp"
             tools:layout_editor_absoluteY="165dp" />
 
@@ -83,7 +81,8 @@
             android:hint="ilość"
             android:inputType="number"
             tools:layout_editor_absoluteX="263dp"
-            tools:layout_editor_absoluteY="202dp" />
+            tools:layout_editor_absoluteY="202dp"
+             />
 
         <Button
             android:id="@+id/button_one"
@@ -121,7 +120,8 @@
             android:hint="producent"
             android:inputType="text"
             tools:layout_editor_absoluteX="283dp"
-            tools:layout_editor_absoluteY="222dp" />
+            tools:layout_editor_absoluteY="222dp"
+            />
 
         <EditText
             android:id="@+id/edittext7"
@@ -130,10 +130,11 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/edittext4"
             android:layout_marginTop="13dp"
-            android:hint="opis"
+            android:hint=" opis"
             android:inputType="text"
             tools:layout_editor_absoluteX="300dp"
-            tools:layout_editor_absoluteY="300dp" />
+            tools:layout_editor_absoluteY="300dp"
+             />
 
         <EditText
             android:id="@+id/edittext8"
@@ -145,13 +146,14 @@
             android:hint="kolor"
             android:inputType="text"
             tools:layout_editor_absoluteX="283dp"
-            tools:layout_editor_absoluteY="222dp" />
+            tools:layout_editor_absoluteY="222dp"
+             />
 
         <EditText
             android:id="@+id/edittext9"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="40dp"
-            android:layout_alignEnd="@+id/edittext8"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/edittext8"
             android:hint="rozmiar"
             android:inputType="number"
@@ -167,7 +169,8 @@
             android:hint="model"
             android:inputType="text"
             tools:layout_editor_absoluteX="283dp"
-            tools:layout_editor_absoluteY="222dp" />
+            tools:layout_editor_absoluteY="222dp"
+             />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
