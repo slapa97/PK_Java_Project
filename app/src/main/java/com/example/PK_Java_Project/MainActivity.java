@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -130,7 +131,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+                Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
