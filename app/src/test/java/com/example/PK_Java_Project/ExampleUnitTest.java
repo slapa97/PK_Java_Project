@@ -2,7 +2,6 @@ package com.example.PK_Java_Project;
 import com.example.PK_Java_Project.Memento.MementoModel;
 import com.example.PK_Java_Project.Products.Product;
 import com.example.PK_Java_Project.Products.ProductProperties;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Iterator;
