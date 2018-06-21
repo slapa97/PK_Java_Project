@@ -13,8 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.PK_Java_Project.Memento.MementoModel;
-import com.example.PK_Java_Project.ProductFactory.*;
 import com.example.PK_Java_Project.Products.Product;
 
 import java.util.LinkedList;
@@ -23,70 +21,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private Container<Product> products = new Container<>();
     private ListView lista;
-    private MementoModel mementoModel = new MementoModel();
     public static final int REQUEST_CODE = 1;
+    private Model model = new Model();
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                String category = data.getStringExtra("category");
-                Product product = null;
-                if (category.equals("Automotive")) {
-                    product = ProductFactory.createProduct(new AutomotiveFactory(
-                            String.valueOf(data.getStringExtra("name")),
-                            String.valueOf(data.getStringExtra("description")),
-                            String.valueOf(data.getStringExtra("producent")),
-                            String.valueOf(data.getStringExtra("model")),
-                            data.getIntExtra("produceYear", 0),
-                            String.valueOf(data.getStringExtra("color")),
-                            String.valueOf(data.getStringExtra("country")),
-                            data.getDoubleExtra("price", 0),
-                            category,
-                            data.getDoubleExtra("quantity", 0)
-                    ));
-
-                } else if (category.equals("Clothes")) {
-                    product = ProductFactory.createProduct(new ClothesFactory(
-                            String.valueOf(data.getStringExtra("name")),
-                            String.valueOf(data.getStringExtra("description")),
-                            String.valueOf(data.getStringExtra("size")),
-                            String.valueOf(data.getStringExtra("color")),
-                            String.valueOf(data.getStringExtra("country")),
-                            data.getDoubleExtra("price", 0),
-                            category,
-                            data.getDoubleExtra("quantity", 0)
-                    ));
-
-                } else if (category.equals("Electronics")) {
-                    product = ProductFactory.createProduct(new ElectronicFactory(
-                            String.valueOf(data.getStringExtra("name")),
-                            String.valueOf(data.getStringExtra("description")),
-                            String.valueOf(data.getStringExtra("size")),
-                            String.valueOf(data.getStringExtra("color")),
-                            String.valueOf(data.getStringExtra("country")),
-                            data.getDoubleExtra("price", 0),
-                            category,
-                            data.getDoubleExtra("quantity", 0)
-                    ));
-                } else if (category.equals("Sport")) {
-                    product = ProductFactory.createProduct(new SportFactory(
-                            String.valueOf(data.getStringExtra("name")),
-                            String.valueOf(data.getStringExtra("description")),
-                            String.valueOf(data.getStringExtra("color")),
-                            String.valueOf(data.getStringExtra("country")),
-                            data.getDoubleExtra("price", 0),
-                            category,
-                            data.getDoubleExtra("quantity", 0)
-                    ));
-                }
-
-                if (product != null) {
-                    products.add(product);
-                    mementoModel.createMemento(products);
-                    actualise();
-
-                }
+                products = model.createProduct(data);
+                actualise();
             }
         }
     }
@@ -113,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
            
             @Override
             public void onClick(View v) {
-                Container<Product> tmp = mementoModel.getRecentMemento();
-                if(tmp != null)
-                    products = tmp;
+                products = model.getRecentMemento();
                 actualise();
             }
 
@@ -125,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
            
             @Override
             public void onClick(View v) {
-                Container<Product> tmp = mementoModel.getNextMemento();
-                if(tmp != null)
-                    products = tmp;
+                products = model.getNextMemento();
                 actualise();
             }
 
