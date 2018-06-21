@@ -13,14 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import android.widget.Toast;
-
 import com.example.PK_Java_Project.Memento.MementoModel;
-import com.example.PK_Java_Project.ProductFactory.AutomotiveFactory;
-import com.example.PK_Java_Project.ProductFactory.ClothesFactory;
-import com.example.PK_Java_Project.ProductFactory.ElectronicFactory;
-import com.example.PK_Java_Project.ProductFactory.ProductFactory;
-import com.example.PK_Java_Project.ProductFactory.SportFactory;
+import com.example.PK_Java_Project.ProductFactory.*;
 import com.example.PK_Java_Project.Products.Product;
 
 import java.util.LinkedList;
@@ -114,20 +108,23 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        ////////////////////////////
-        ////nowe przyciski//////
-        //////////////////////////
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Marian", Toast.LENGTH_SHORT).show();
+                Container<Product> tmp = mementoModel.getRecentMemento();
+                if(tmp != null)
+                    products = tmp;
+                actualise();
             }
 
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Pjoter", Toast.LENGTH_SHORT).show();
+                Container<Product> tmp = mementoModel.getNextMemento();
+                if(tmp != null)
+                    products = tmp;
+                actualise();
             }
 
         });
@@ -137,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
             {
                 Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
+                intent.putExtra("details", products.get(position).getStringToDisplay());
                 startActivity(intent);
             }
         });
@@ -160,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
 

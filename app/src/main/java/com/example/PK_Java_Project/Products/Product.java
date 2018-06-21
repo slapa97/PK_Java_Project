@@ -9,4 +9,5 @@ public interface Product {
     double getPrice();
     String getCountry();
     String getColor();
+    String getStringToDisplay();
 }

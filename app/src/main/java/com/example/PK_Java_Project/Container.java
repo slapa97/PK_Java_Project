@@ -8,9 +8,10 @@ import java.util.List;
 
 public class Container<T> implements Iterable<T> {
     private List<T> storage;
-    Container(){
+    public Container(){
         storage = new ArrayList<>();
     }
+    public Container(Container container){this.storage = new ArrayList<>(container.storage);}
     public void add(T item){
         storage.add(item);
     }
@@ -20,7 +21,9 @@ public class Container<T> implements Iterable<T> {
     public boolean isEmpty(){
         return storage.isEmpty();
     }
-
+    public int size(){
+        return storage.size();
+    }
     @NonNull
     @Override
     public Iterator<T> iterator() {
