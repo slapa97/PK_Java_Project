@@ -13,4 +13,9 @@ public class Clothes extends ProductProperties implements Product {
         this.category = category;
         this.quantity = quantity;
     }
+
+    @Override
+    public String getStringToDisplay(){
+        return " ";
+    }
 }

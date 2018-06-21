@@ -14,4 +14,8 @@ public class Electronic extends ProductProperties implements Product {
         this.quantity = quantity;
     }
 
+    @Override
+    public String getStringToDisplay(){
+        return " ";
+    }
 }

@@ -1,4 +1,5 @@
 package com.example.PK_Java_Project;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,16 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-//ss
 
-import com.example.PK_Java_Project.ProductFactory.AutomotiveFactory;
-import com.example.PK_Java_Project.ProductFactory.ClothesFactory;
-import com.example.PK_Java_Project.ProductFactory.ElectronicFactory;
-import com.example.PK_Java_Project.ProductFactory.ProductFactory;
-import com.example.PK_Java_Project.ProductFactory.SportFactory;
+import com.example.PK_Java_Project.Memento.MementoModel;
+import com.example.PK_Java_Project.ProductFactory.*;
 import com.example.PK_Java_Project.Products.Product;
 
 import java.util.LinkedList;
@@ -25,6 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private Container<Product> products = new Container<>();
     private ListView lista;
+    private MementoModel mementoModel = new MementoModel();
     public static final int REQUEST_CODE = 1;
 
     @Override
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (product != null) {
                     products.add(product);
-                    actualise(lista);
+                    mementoModel.createMemento(products);
+                    actualise();
 
                 }
             }
@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
+        Button button2 = (Button) findViewById(R.id.button2);/// ten po lewej  (<---)
+        Button button3 = (Button) findViewById(R.id.button3);/// tan po prawej (--->)
         lista = (ListView) findViewById(R.id.lista);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,10 +107,41 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Container<Product> tmp = mementoModel.getRecentMemento();
+                if(tmp != null)
+                    products = tmp;
+                actualise();
+            }
+
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Container<Product> tmp = mementoModel.getNextMemento();
+                if(tmp != null)
+                    products = tmp;
+                actualise();
+            }
+
+        });
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+                Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
+                intent.putExtra("details", products.get(position).getStringToDisplay());
+                startActivity(intent);
+            }
+        });
     }
 
 
-    private void actualise(ListView lista) {
+    private void actualise() {
         if(!products.isEmpty()) {
             SharedPreferences.Editor ProductsDetails = getApplicationContext().getSharedPreferences("ProductsDetails", Context.MODE_PRIVATE).edit();
             try {
@@ -125,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
 

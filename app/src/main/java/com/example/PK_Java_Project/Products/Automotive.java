@@ -19,4 +19,10 @@ public class Automotive extends ProductProperties implements Product {
         this.quantity = quantity;
     }
 
+    @Override
+    public String getStringToDisplay() {
+        return name + "\n" + description + "\n" + producent + " " + model
+                + "\nrok produkcji:  " + produceYear + "\n" + color + "\n"
+                + country + "\ncena:  " + price + "\nilosc: " +  quantity;
+    }
 }
