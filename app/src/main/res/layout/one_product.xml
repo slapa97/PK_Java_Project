@@ -165,7 +165,9 @@
             android:hint="model"
             android:inputType="text"
             tools:layout_editor_absoluteX="283dp"
-            tools:layout_editor_absoluteY="222dp" />
+
+            tools:layout_editor_absoluteY="222dp"
+             />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

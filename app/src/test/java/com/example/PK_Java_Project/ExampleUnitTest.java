@@ -1,11 +1,8 @@
 package com.example.PK_Java_Project;
-
-
-
 import com.example.PK_Java_Project.Memento.MementoModel;
 import com.example.PK_Java_Project.Products.Product;
 import com.example.PK_Java_Project.Products.ProductProperties;
-
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -32,6 +29,7 @@ public class ExampleUnitTest {
             assertEquals(strings[index++], it.next());
     }
     @Test
+
     public void testContainerSize() throws Exception{
         Container<String> cont = new Container<>();
         String[] strings = {"jeden", "dwa, trzy"};
@@ -57,7 +55,8 @@ public class ExampleUnitTest {
             return null;
         }
         SimpleProduct(){}
-    }
+    public void addition_isCorrect() throws Exception {
+        assertEquals(4, 2 + 2);
     @Test
     public void testRecentMemento(){
 
