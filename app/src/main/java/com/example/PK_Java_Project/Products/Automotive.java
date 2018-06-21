@@ -22,7 +22,7 @@ public class Automotive extends ProductProperties implements Product {
     @Override
     public String getStringToDisplay() {
         return name + "\n" + description + "\n" + producent + " " + model
-                + "\nrok produkcji:  " + produceYear + "\n" + color + "\n"
-                + country + "\ncena:  " + price + "\nilosc: " +  quantity;
+                + "\nrok produkcji:  " + produceYear + "\nkolor: " + color +
+                "\nkraj: " + country + "\ncena:  " + price + "\nilosc: " +  quantity;
     }
 }
