@@ -96,10 +96,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
-        Button button2 = (Button) findViewById(R.id.button2);/// ten po lewej  (<---)
-        Button button3 = (Button) findViewById(R.id.button3);/// tan po prawej (--->)
+        Button button2 = (Button) findViewById(R.id.button2);/// ten przycisk  po lewej  (<---)
+        Button button3 = (Button) findViewById(R.id.button3);/// ten przycisk po prawej (--->)
         lista = (ListView) findViewById(R.id.lista);
         button.setOnClickListener(new View.OnClickListener() {
+           
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), OneProduct.class);
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
+           
             @Override
             public void onClick(View v) {
                 Container<Product> tmp = mementoModel.getRecentMemento();
@@ -118,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+      
         button3.setOnClickListener(new View.OnClickListener() {
+           
             @Override
             public void onClick(View v) {
                 Container<Product> tmp = mementoModel.getNextMemento();
