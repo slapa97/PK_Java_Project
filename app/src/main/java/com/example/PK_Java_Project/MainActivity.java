@@ -1,4 +1,5 @@
 package com.example.PK_Java_Project;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,9 +11,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-//ss
 
+import android.widget.Toast;
+
+import com.example.PK_Java_Project.Memento.MementoModel;
 import com.example.PK_Java_Project.ProductFactory.AutomotiveFactory;
 import com.example.PK_Java_Project.ProductFactory.ClothesFactory;
 import com.example.PK_Java_Project.ProductFactory.ElectronicFactory;
@@ -26,6 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private Container<Product> products = new Container<>();
     private ListView lista;
+    private MementoModel mementoModel = new MementoModel();
     public static final int REQUEST_CODE = 1;
 
     @Override
@@ -85,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (product != null) {
                     products.add(product);
-                    actualise(lista);
+                    mementoModel.createMemento(products);
+                    actualise();
 
                 }
             }
@@ -130,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void actualise(ListView lista) {
+    private void actualise() {
         if(!products.isEmpty()) {
             SharedPreferences.Editor ProductsDetails = getApplicationContext().getSharedPreferences("ProductsDetails", Context.MODE_PRIVATE).edit();
             try {
