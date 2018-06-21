@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 //ss
 
 import com.example.PK_Java_Project.ProductFactory.AutomotiveFactory;
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = (Button) findViewById(R.id.button);
+        Button button2 = (Button) findViewById(R.id.button2);/// ten po lewej  (<---)
+        Button button3 = (Button) findViewById(R.id.button3);/// tan po prawej (--->)
         lista = (ListView) findViewById(R.id.lista);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +108,25 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        ////////////////////////////
+        ////nowe przyciski//////
+        //////////////////////////
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Marian", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Pjoter", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
     }
 
 
