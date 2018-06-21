@@ -15,7 +15,7 @@ public class Clothes extends ProductProperties implements Product {
     }
 
     @Override
-    public String getDescription() {
-        return "Kategoria odziez:\n" + description;
+    public String getStringToDisplay(){
+        return " ";
     }
 }

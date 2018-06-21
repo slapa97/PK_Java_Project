@@ -15,7 +15,7 @@ public class Electronic extends ProductProperties implements Product {
     }
 
     @Override
-    public String getDescription() {
-        return "Kategoria Elektronika:\n" + description;
+    public String getStringToDisplay(){
+        return " ";
     }
 }

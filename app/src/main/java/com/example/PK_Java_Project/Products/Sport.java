@@ -13,7 +13,7 @@ public class Sport extends ProductProperties implements Product {
     }
 
     @Override
-    public String getDescription() {
-        return "Kategoria sport:\n" + description;
+    public String getStringToDisplay(){
+        return " ";
     }
 }

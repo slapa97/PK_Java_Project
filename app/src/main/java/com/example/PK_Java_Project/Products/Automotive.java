@@ -20,7 +20,9 @@ public class Automotive extends ProductProperties implements Product {
     }
 
     @Override
-    public String getDescription() {
-        return "Kategoria motoryzacja:\n" + description;
+    public String getStringToDisplay() {
+        return name + "\n" + description + "\n" + producent + " " + model
+                + "\nrok produkcji:  " + produceYear + "\n" + color + "\n"
+                + country + "\ncena:  " + price + "\nilosc: " +  quantity;
     }
 }

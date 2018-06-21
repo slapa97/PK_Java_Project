@@ -10,14 +10,14 @@ public class MementoModel {
     private int size = 0;
 
     public void createMemento(Container<Product> list) {
-        originator.setState(list);
+        originator.setState(new Container<Product>(list));
         careTaker.add(originator.saveStateToMemento());
         index++;
         size++;
     }
 
     public Container<Product> getRecentMemento() {
-        if (size > 0) {
+        if (index > 0) {
             originator.getStateFromMemento(careTaker.get(--index));
             return originator.getState();
         } else
