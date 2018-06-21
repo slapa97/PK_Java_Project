@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_details"
             android:text="brak"
-            android:textSize="40dp"
+            android:textSize="30dp"
             />
     </RelativeLayout>>
 </android.support.constraint.ConstraintLayout>
