@@ -19,4 +19,8 @@ public class Automotive extends ProductProperties implements Product {
         this.quantity = quantity;
     }
 
+    @Override
+    public String getDescription() {
+        return "Kategoria motoryzacja:\n" + description;
+    }
 }
