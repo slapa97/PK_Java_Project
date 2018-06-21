@@ -14,6 +14,7 @@ public class Sport extends ProductProperties implements Product {
 
     @Override
     public String getStringToDisplay(){
-        return " ";
+        return name + "\n" + description + "\nkolor: " + color +
+                "\nkraj: " + country + "\ncena:  " + price + "\nilosc: " +  quantity;
     }
 }

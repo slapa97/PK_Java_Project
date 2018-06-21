@@ -16,6 +16,7 @@ public class Electronic extends ProductProperties implements Product {
 
     @Override
     public String getStringToDisplay(){
-        return " ";
+        return name + "\n" + description + "\nrozmiar" + size + "\nkolor: " + color +
+                "\nkraj: " + country + "\ncena:  " + price + "\nilosc: " +  quantity;
     }
 }

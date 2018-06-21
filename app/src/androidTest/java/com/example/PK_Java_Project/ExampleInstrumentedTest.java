@@ -4,10 +4,17 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.PK_Java_Project.Memento.MementoModel;
+import com.example.PK_Java_Project.Products.Product;
+import com.example.PK_Java_Project.Products.ProductProperties;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -23,3 +30,4 @@ public class ExampleInstrumentedTest {
         assertEquals("com.example.PK_Java_Project", appContext.getPackageName());
     }
 }
+
