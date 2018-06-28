@@ -57,9 +57,7 @@ public class ExampleUnitTest {
         SimpleProduct() {
         }
     }
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
+    
     @Test
     public void testRecentMemento(){
 
@@ -102,9 +100,6 @@ public class ExampleUnitTest {
             assertEquals(it1.next(), it2.next());
     }
 
-    //@Test
-    //public void AdditionIsCorrect(){
-    //    assertEquals(4, 1+2);
-    //}
+
 
 }
